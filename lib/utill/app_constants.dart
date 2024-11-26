@@ -4,7 +4,7 @@ import 'package:flutter_grocery/common/models/language_model.dart';
 import 'images.dart';
 
 class AppConstants {
-  static const String appName = 'Mazar Market';
+  static const String appName = 'تسويقة';
   static const double appVersion = 7.4;
   static const AppMode appMode = AppMode.release;
   static const String fontFamily = 'Poppins';

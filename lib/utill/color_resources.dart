@@ -53,9 +53,9 @@ class ColorResources {
 
   static const Color cartShadowColor = Color(0xFFA7A7A7);
   static const Color ratingColor = Color(0xFFFFBA08);
-  static const Color colorGreen = Color(0xFFF29222);
+  static const Color colorGreen = Color(0xFF0069AA);
   // static const Color colorGreen = Color(0xFF057237);
-  static const Color colorGreenApp = Color(0xFF17944A);
+  static const Color colorGreenApp = Color(0xFF0069AA);
   static const Color colorBlue = Color(0xFF1692C9);
   static const Color redColor = Color(0xFFF29222);
 }
