@@ -8,7 +8,7 @@ class AppConstants {
   static const double appVersion = 7.4;
   static const AppMode appMode = AppMode.release;
   static const String fontFamily = 'Poppins';
-  static const String baseUrl = 'https://tasweka.medicalvisionarabia.com';
+  static const String baseUrl = 'https://demo.tasweka.com';
   static const String configUri = '$baseUrl/api/v1/config';
   static const String bannerUri = '/api/v1/banners';
   static const String categoryUri = '/api/v1/categories';
