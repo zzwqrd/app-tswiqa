@@ -280,3 +280,4 @@ class Get {
   static BuildContext? get context => navigatorKey.currentContext;
   static NavigatorState? get navigator => navigatorKey.currentState;
 }
+// keytool -genkey -v -keystore /Users/macos/Downloads/app_zmark-main/user_app_and_web/android/app/key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
