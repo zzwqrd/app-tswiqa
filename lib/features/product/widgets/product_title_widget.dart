@@ -9,14 +9,18 @@ import 'package:flutter_grocery/utill/dimensions.dart';
 import 'package:flutter_grocery/utill/styles.dart';
 import 'package:provider/provider.dart';
 
+import '../../../common/widgets/custom_directionality_widget.dart';
+
 class ProductTitleWidget extends StatelessWidget {
   final Product? product;
   final int? stock;
   final int? cartIndex;
+  final double? priceWithQuantity;
   const ProductTitleWidget(
       {Key? key,
       required this.product,
       required this.stock,
+      required this.priceWithQuantity,
       required this.cartIndex})
       : super(key: key);
 
@@ -171,38 +175,40 @@ class ProductTitleWidget extends StatelessWidget {
             const SizedBox(height: Dimensions.paddingSizeDefault),
 
             //Product Price
-            // Row(children: [
-            //   startingPriceWithDiscount! < startingPrice!
-            //       ? CustomDirectionalityWidget(
-            //           child: Text(
-            //             '${PriceConverterHelper.convertPrice(context, startingPrice)}'
-            //             '${endingPrice != null ? ' - ${PriceConverterHelper.convertPrice(context, endingPrice)}' : ''}',
-            //             style: poppinsRegular.copyWith(
-            //               color: Theme.of(context).disabledColor,
-            //               fontSize: Dimensions.fontSizeSmall,
-            //               decoration: TextDecoration.lineThrough,
-            //             ),
-            //           ),
-            //         )
-            //       : const SizedBox(),
-            //   // SizedBox(
-            //   //     width: startingPriceWithDiscount < startingPrice
-            //   //         ? Dimensions.paddingSizeExtraSmall
-            //   //         : 0),
-            //   // CustomDirectionalityWidget(
-            //   //     child: Text(
-            //   //   '${PriceConverterHelper.convertPrice(
-            //   //     context,
-            //   //     startingPriceWithDiscount,
-            //   //   )}'
-            //   //   '${endingPriceWithDiscount != null ? ' - ${PriceConverterHelper.convertPrice(context, endingPriceWithDiscount)}' : ''}',
-            //   //   style: poppinsBold.copyWith(
-            //   //       color: Theme.of(context).primaryColor,
-            //   //       fontSize: ResponsiveHelper.isDesktop(context)
-            //   //           ? Dimensions.fontSizeExtraLarge
-            //   //           : Dimensions.fontSizeLarge),
-            //   // )),
-            // ]),
+            Row(children: [
+              startingPriceWithDiscount! < startingPrice!
+                  ? CustomDirectionalityWidget(
+                      child: Text(
+                        '${PriceConverterHelper.convertPrice(context, startingPrice)}'
+                        '${endingPrice != null ? ' - ${PriceConverterHelper.convertPrice(context, endingPrice)}' : ''}',
+                        style: poppinsRegular.copyWith(
+                          color: Theme.of(context).disabledColor,
+                          fontSize: Dimensions.fontSizeSmall,
+                          decoration: TextDecoration.lineThrough,
+                        ),
+                      ),
+                    )
+                  : const SizedBox(),
+              SizedBox(
+                  width: startingPriceWithDiscount < startingPrice
+                      ? Dimensions.paddingSizeExtraSmall
+                      : 0),
+              // CustomDirectionalityWidget(
+              //     child: Text(
+              //   '${PriceConverterHelper.convertPrice(
+              //     context,
+              //     // startingPriceWithDiscount,
+              //     priceWithQuantity,
+              //   )}'
+              //   '',
+              //   // '${endingPriceWithDiscount != null ? ' - ${PriceConverterHelper.convertPrice(context, endingPriceWithDiscount)}' : ''}',
+              //   style: poppinsBold.copyWith(
+              //       color: Theme.of(context).primaryColor,
+              //       fontSize: ResponsiveHelper.isDesktop(context)
+              //           ? Dimensions.fontSizeExtraLarge
+              //           : Dimensions.fontSizeLarge),
+              // )),
+            ]),
           ]),
         );
       },
