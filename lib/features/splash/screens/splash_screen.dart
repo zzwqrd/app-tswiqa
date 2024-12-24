@@ -1,19 +1,19 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_grocery/helper/responsive_helper.dart';
-import 'package:flutter_grocery/localization/app_localization.dart';
-import 'package:flutter_grocery/features/auth/providers/auth_provider.dart';
 import 'package:flutter_grocery/common/providers/cart_provider.dart';
+import 'package:flutter_grocery/features/auth/providers/auth_provider.dart';
+import 'package:flutter_grocery/features/onboarding/screens/on_boarding_screen.dart';
 import 'package:flutter_grocery/features/splash/providers/splash_provider.dart';
+import 'package:flutter_grocery/helper/responsive_helper.dart';
 import 'package:flutter_grocery/helper/route_helper.dart';
+import 'package:flutter_grocery/localization/app_localization.dart';
 import 'package:flutter_grocery/utill/app_constants.dart';
 import 'package:flutter_grocery/utill/dimensions.dart';
 import 'package:flutter_grocery/utill/images.dart';
 import 'package:flutter_grocery/utill/styles.dart';
-import 'package:flutter_grocery/features/menu/screens/menu_screen.dart';
-import 'package:flutter_grocery/features/onboarding/screens/on_boarding_screen.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -38,10 +38,15 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     bool firstTime = true;
-    _onConnectivityChanged = Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      if(!firstTime) {
-        bool isNotConnected = result != ConnectivityResult.wifi && result != ConnectivityResult.mobile;
-        isNotConnected ? const SizedBox() : ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    _onConnectivityChanged = Connectivity()
+        .onConnectivityChanged
+        .listen((ConnectivityResult result) {
+      if (!firstTime) {
+        bool isNotConnected = result != ConnectivityResult.wifi &&
+            result != ConnectivityResult.mobile;
+        isNotConnected
+            ? const SizedBox()
+            : ScaffoldMessenger.of(context).hideCurrentSnackBar();
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           backgroundColor: isNotConnected ? Colors.red : Colors.green,
           duration: Duration(seconds: isNotConnected ? 6000 : 3),
@@ -50,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
             textAlign: TextAlign.center,
           ),
         ));
-        if(!isNotConnected) {
+        if (!isNotConnected) {
           _route();
         }
       }
@@ -63,37 +68,47 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _route() {
-    final SplashProvider splashProvider = Provider.of<SplashProvider>(context, listen: false);
-    // Provider.of<SplashProvider>(context, listen: false).removeSharedData();
+    final SplashProvider splashProvider =
+        Provider.of<SplashProvider>(context, listen: false);
+    Provider.of<SplashProvider>(context, listen: false).removeSharedData();
     splashProvider.initConfig().then((bool isSuccess) {
       if (isSuccess) {
         Timer(const Duration(seconds: 1), () async {
           double minimumVersion = 0.0;
-          if(Platform.isAndroid) {
-            if(splashProvider.configModel?.playStoreConfig?.minVersion != null){
-              minimumVersion = splashProvider.configModel?.playStoreConfig?.minVersion ?? AppConstants.appVersion;
-
+          if (Platform.isAndroid) {
+            if (splashProvider.configModel?.playStoreConfig?.minVersion !=
+                null) {
+              minimumVersion =
+                  splashProvider.configModel?.playStoreConfig?.minVersion ??
+                      AppConstants.appVersion;
             }
-
-          }else if(Platform.isIOS) {
-            if(splashProvider.configModel?.appStoreConfig?.minVersion != null){
-              minimumVersion = splashProvider.configModel?.appStoreConfig?.minVersion ?? AppConstants.appVersion;
+          } else if (Platform.isIOS) {
+            if (splashProvider.configModel?.appStoreConfig?.minVersion !=
+                null) {
+              minimumVersion =
+                  splashProvider.configModel?.appStoreConfig?.minVersion ??
+                      AppConstants.appVersion;
             }
           }
-          if(AppConstants.appVersion < minimumVersion && !ResponsiveHelper.isWeb()) {
-            Navigator.pushNamedAndRemoveUntil(context, RouteHelper.getUpdateRoute(), (route) => false);
-          }
-          else{
-            if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn()) {
+          if (AppConstants.appVersion < minimumVersion &&
+              !ResponsiveHelper.isWeb()) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, RouteHelper.getUpdateRoute(), (route) => false);
+          } else {
+            if (Provider.of<AuthProvider>(context, listen: false)
+                .isLoggedIn()) {
               Provider.of<AuthProvider>(context, listen: false).updateToken();
-              Navigator.of(context).pushNamedAndRemoveUntil(RouteHelper.menu, (route) => false);
-
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil(RouteHelper.menu, (route) => false);
             } else {
-              if(Provider.of<SplashProvider>(context, listen: false).showIntro()) {
-                Navigator.pushNamedAndRemoveUntil(context, RouteHelper.onBoarding, (route) => false, arguments: OnBoardingScreen());
-
-              }else {
-                Navigator.of(context).pushNamedAndRemoveUntil(RouteHelper.menu, (route) => false);
+              if (Provider.of<SplashProvider>(context, listen: false)
+                  .showIntro()) {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, RouteHelper.onBoarding, (route) => false,
+                    arguments: OnBoardingScreen());
+              } else {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    RouteHelper.menu, (route) => false);
               }
             }
           }
@@ -111,7 +126,6 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Image.asset(Images.appLogo, height: 130, width: 500),
           const SizedBox(height: Dimensions.paddingSizeSmall),
-
           Text(AppConstants.appName,
               textAlign: TextAlign.center,
               style: poppinsMedium.copyWith(

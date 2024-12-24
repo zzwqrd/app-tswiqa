@@ -1,4 +1,4 @@
-package com.newname.yournewapp
+package com.tasweka.tasweka
 
 import io.flutter.embedding.android.FlutterActivity
 
