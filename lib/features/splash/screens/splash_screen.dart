@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _route() {
     final SplashProvider splashProvider =
         Provider.of<SplashProvider>(context, listen: false);
-    Provider.of<SplashProvider>(context, listen: false).removeSharedData();
+    // Provider.of<SplashProvider>(context, listen: false).removeSharedData();
     splashProvider.initConfig().then((bool isSuccess) {
       if (isSuccess) {
         Timer(const Duration(seconds: 1), () async {
