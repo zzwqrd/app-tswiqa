@@ -2,27 +2,25 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_grocery/common/enums/footer_type_enum.dart';
 import 'package:flutter_grocery/common/models/config_model.dart';
+import 'package:flutter_grocery/common/widgets/custom_button_widget.dart';
 import 'package:flutter_grocery/common/widgets/custom_pop_scope_widget.dart';
+import 'package:flutter_grocery/common/widgets/custom_text_field_widget.dart';
+import 'package:flutter_grocery/common/widgets/footer_web_widget.dart';
+import 'package:flutter_grocery/common/widgets/web_app_bar_widget.dart';
 import 'package:flutter_grocery/features/auth/domain/models/user_log_data.dart';
+import 'package:flutter_grocery/features/auth/providers/auth_provider.dart';
+import 'package:flutter_grocery/features/auth/screens/forgot_password_screen.dart';
+import 'package:flutter_grocery/features/auth/widgets/country_code_picker_widget.dart';
+import 'package:flutter_grocery/features/splash/providers/splash_provider.dart';
+import 'package:flutter_grocery/helper/custom_snackbar_helper.dart';
 import 'package:flutter_grocery/helper/email_checker_helper.dart';
 import 'package:flutter_grocery/helper/responsive_helper.dart';
 import 'package:flutter_grocery/helper/route_helper.dart';
 import 'package:flutter_grocery/localization/language_constraints.dart';
-import 'package:flutter_grocery/features/auth/providers/auth_provider.dart';
-import 'package:flutter_grocery/features/splash/providers/splash_provider.dart';
 import 'package:flutter_grocery/utill/dimensions.dart';
 import 'package:flutter_grocery/utill/images.dart';
 import 'package:flutter_grocery/utill/styles.dart';
-import 'package:flutter_grocery/common/widgets/custom_button_widget.dart';
-import 'package:flutter_grocery/helper/custom_snackbar_helper.dart';
-import 'package:flutter_grocery/common/widgets/custom_text_field_widget.dart';
-import 'package:flutter_grocery/common/widgets/footer_web_widget.dart';
-import 'package:flutter_grocery/features/auth/widgets/country_code_picker_widget.dart';
-import 'package:flutter_grocery/features/auth/screens/forgot_password_screen.dart';
-import 'package:flutter_grocery/common/widgets/web_app_bar_widget.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/social_login_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -260,8 +258,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ])),
                   ),
 
-                  if(socialStatus!.isFacebook! || socialStatus.isGoogle!)
-                    Center(child: SocialLoginWidget(countryCode: countryCode)),
+                  // if(socialStatus!.isFacebook! || socialStatus.isGoogle!)
+                  //   Center(child: SocialLoginWidget(countryCode: countryCode)),
 
 
                   Center(child: Text(getTranslated('OR', context), style: poppinsRegular.copyWith(fontSize: 12))),
