@@ -210,8 +210,8 @@ class _MyAppState extends State<MyApp> {
                 theme: Provider.of<ThemeProvider>(context).darkTheme
                     ? dark
                     : light,
-                // locale: Provider.of<LocalizationProvider>(context).locale,
-                locale: const Locale('ar', 'SA'),
+                locale: Provider.of<LocalizationProvider>(context).locale,
+                // locale: const Locale('en', 'US'),
                 localizationsDelegates: const [
                   AppLocalization.delegate,
                   GlobalMaterialLocalizations.delegate,
@@ -220,6 +220,7 @@ class _MyAppState extends State<MyApp> {
                 ],
                 supportedLocales: [
                   Locale('ar', 'SA'),
+                  Locale('en', 'US'),
                 ],
                 // supportedLocales: locals,
                 scrollBehavior:

@@ -108,7 +108,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     arguments: OnBoardingScreen());
               } else {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    RouteHelper.menu, (route) => false);
+                    RouteHelper.login, (route) => false);
               }
             }
           }
