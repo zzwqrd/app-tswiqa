@@ -69,6 +69,7 @@
   "login": "Login",
   "signup": "Signup",
   "email": "Email",
+  "email_phone": "Email/Phone",
   "demo_gmail": "demo@gmail.com",
   "password_did_not_match": "Password does not matched",
   "mobile_number": "Mobile Number",
