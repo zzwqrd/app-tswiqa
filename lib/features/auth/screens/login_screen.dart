@@ -10,7 +10,6 @@ import 'package:flutter_grocery/common/widgets/web_app_bar_widget.dart';
 import 'package:flutter_grocery/features/auth/domain/models/user_log_data.dart';
 import 'package:flutter_grocery/features/auth/providers/auth_provider.dart';
 import 'package:flutter_grocery/features/auth/screens/forgot_password_screen.dart';
-import 'package:flutter_grocery/features/auth/widgets/country_code_picker_widget.dart';
 import 'package:flutter_grocery/features/splash/providers/splash_provider.dart';
 import 'package:flutter_grocery/helper/custom_snackbar_helper.dart';
 import 'package:flutter_grocery/helper/email_checker_helper.dart';
@@ -36,8 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController? _emailController;
   TextEditingController? _passwordController;
   GlobalKey<FormState>? _formKeyLogin;
-  bool email = true;
-  bool phone = false;
+  bool email = false;
+  bool phone = true;
   String? countryCode;
 
   @override
@@ -139,49 +138,58 @@ class _LoginScreenState extends State<LoginScreen> {
                                       .withOpacity(0.6)),
                             )
                           : Text(
-                              getTranslated('mobile_number', context),
+                              getTranslated('email', context),
                               style: poppinsRegular.copyWith(
                                   color: Theme.of(context)
                                       .hintColor
                                       .withOpacity(0.6)),
                             ),
                       const SizedBox(height: Dimensions.paddingSizeSmall),
-
-                      (configModel.emailVerification ?? false)
-                          ? CustomTextFieldWidget(
-                              hintText: getTranslated('demo_gmail', context),
-                              isShowBorder: true,
-                              focusNode: _emailFocus,
-                              nextFocus: _passwordFocus,
-                              controller: _emailController,
-                              inputType: TextInputType.emailAddress,
-                            )
-                          : Row(children: [
-                              CountryCodePickerWidget(
-                                onChanged: (CountryCode value) {
-                                  countryCode = value.dialCode;
-                                },
-                                initialSelection: countryCode,
-                                favorite: [countryCode!],
-                                showDropDownButton: true,
-                                padding: EdgeInsets.zero,
-                                showFlagMain: true,
-                                textStyle: TextStyle(
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge
-                                        ?.color),
-                              ),
-                              Expanded(
-                                  child: CustomTextFieldWidget(
-                                hintText: getTranslated('number_hint', context),
-                                isShowBorder: true,
-                                focusNode: _numberFocus,
-                                nextFocus: _passwordFocus,
-                                controller: _emailController,
-                                inputType: TextInputType.phone,
-                              )),
-                            ]),
+                      CustomTextFieldWidget(
+                        hintText: getTranslated('demo_gmail', context),
+                        isShowBorder: true,
+                        focusNode: _emailFocus,
+                        nextFocus: _passwordFocus,
+                        controller: _emailController,
+                        inputType: TextInputType.emailAddress,
+                      ),
+                      // (configModel.emailVerification ?? false)
+                      //     ? CustomTextFieldWidget(
+                      //         hintText: getTranslated('demo_gmail', context),
+                      //         isShowBorder: true,
+                      //         focusNode: _emailFocus,
+                      //         nextFocus: _passwordFocus,
+                      //         controller: _emailController,
+                      //         inputType: TextInputType.emailAddress,
+                      //       )
+                      //     : Row(children: [
+                      //         CountryCodePickerWidget(
+                      //           onChanged: (CountryCode value) {
+                      //             countryCode = value.dialCode;
+                      //           },
+                      //           initialSelection: countryCode,
+                      //           favorite: [countryCode!],
+                      //           showDropDownButton: true,
+                      //           padding: EdgeInsets.zero,
+                      //           showFlagMain: true,
+                      //           textStyle: TextStyle(
+                      //               color: Theme.of(context)
+                      //                   .textTheme
+                      //                   .displayLarge
+                      //                   ?.color),
+                      //         ),
+                      //         Expanded(
+                      //           child: CustomTextFieldWidget(
+                      //             hintText:
+                      //                 getTranslated('number_hint', context),
+                      //             isShowBorder: true,
+                      //             focusNode: _numberFocus,
+                      //             nextFocus: _passwordFocus,
+                      //             controller: _emailController,
+                      //             inputType: TextInputType.phone,
+                      //           ),
+                      //         ),
+                      //       ]),
                       const SizedBox(height: Dimensions.paddingSizeLarge),
 
                       Text(
@@ -413,9 +421,9 @@ class _LoginScreenState extends State<LoginScreen> {
     String email = _emailController?.text.trim() ?? '';
     String password = _passwordController?.text.trim() ?? '';
 
-    if (!splashProvider.configModel!.emailVerification!) {
-      email = countryCode! + _emailController!.text.trim();
-    }
+    // if (!splashProvider.configModel!.emailVerification!) {
+    //   email = countryCode! + _emailController!.text.trim();
+    // }
 
     if (email.isEmpty) {
       if (splashProvider.configModel!.emailVerification!) {
