@@ -69,10 +69,10 @@ class _MenuScreenState extends State<MenuScreen> {
       showShadow: false,
       angle: 0.0,
       borderRadius: 30,
-      // slideWidth: MediaQuery.of(context).size.width *
-      //     (localizationProvider.isLtr ? 0.0 : 0.1),
       slideWidth: MediaQuery.of(context).size.width *
-          (localizationProvider.isLtr ? 0.6 : 0.1),
+          (localizationProvider.isLtr ? 0.0 : 0.1),
+      // slideWidth: MediaQuery.of(context).size.width *
+      //     (localizationProvider.isLtr ? 0.6 : 0.1),
 
       // slideWidth: MediaQuery.of(context).size.width * 0.1,
     );

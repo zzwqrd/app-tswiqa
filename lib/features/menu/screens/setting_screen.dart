@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 
 import '../../auth/providers/auth_provider.dart';
 import '../widgets/acount_delete_dialog_widget.dart';
-import '../widgets/currency_dialog_widget.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
@@ -46,12 +45,12 @@ class SettingsScreen extends StatelessWidget {
                     style: poppinsRegular.copyWith(
                         fontSize: Dimensions.fontSizeLarge)),
               ),
-              _TitleButton(
-                icon: Icons.language,
-                title: getTranslated('choose_language', context),
-                onTap: () =>
-                    showDialogHelper(context, const CurrencyDialogWidget()),
-              ),
+              // _TitleButton(
+              //   icon: Icons.language,
+              //   title: getTranslated('choose_language', context),
+              //   onTap: () =>
+              //       showDialogHelper(context, const CurrencyDialogWidget()),
+              // ),
               authProvider.isLoggedIn()
                   ? ListTile(
                       onTap: () {

@@ -106,11 +106,11 @@ class AppConstants {
   static const String guestId = 'guest_id';
 
   static List<LanguageModel> languages = [
-    LanguageModel(
-        imageUrl: Images.englandFlag,
-        languageName: 'English',
-        countryCode: 'US',
-        languageCode: 'en'),
+    // LanguageModel(
+    //     imageUrl: Images.englandFlag,
+    //     languageName: 'English',
+    //     countryCode: 'US',
+    //     languageCode: 'en'),
     LanguageModel(
         imageUrl: Images.arabicFlag,
         languageName: 'العربية',
